@@ -1,34 +1,57 @@
 /* 
-	name: Ray Villalobos
- 	course name: ICT 4510 Advanced Web Design and Site Management
- 	date: 04/06/15
+  name: Ray Villalobos
+  course name: ICT 4510 Advanced Web Design and Site Management
+  date: 04/13/15
 */
 
 $(function() {
+  'use strict';
 
-  "use strict";
-  var firstName, lastName, email, phone;
-
-  do {
-    firstName = window.prompt("Please enter your first name");
-  } while (firstName === '' && firstName === null);
-
-  do {
-    lastName = window.prompt("Please enter your last name");
-  } while (lastName === '');
-
-  do {
-    email = window.prompt("please enter your email address");
-  } while (email === '');
-
-  do {
-    phone = window.prompt("please enter your phone number");
-  } while (phone === '');
-
-  console.log(firstName, lastName, email, phone);
-  alert('Thanks for filling out the forms ' + firstName);
-
-  if (phone !== null) {
-    alert('We will contact you soon.');
+  function getUserInfo() {
+    var formInfo = {};
+    var myInfoArray = [];
+    formInfo.firstname = document.getElementById('firstname').value;
+    formInfo.lastname = document.getElementById('lastname').value;
+    formInfo.email = document.getElementById('email').value;
+    formInfo.phone = document.getElementById('phone').value;
+    myInfoArray = validate(formInfo);
+    console.log(myInfoArray.length);
+    if (myInfoArray.length === 0) {
+      myInfoArray.push('Thank you ' + formInfo.firstname);
+    }
+    return myInfoArray;
   }
+
+  function validate(myObject) {
+    var myErrors = [];
+    if (myObject.firstname.length === 0) {
+      myErrors.push('Please enter your first name');
+    }
+    if (myObject.lastname.length === 0) {
+      myErrors.push('Please enter your last name');
+    }
+    if (myObject.email.length === 0) {
+      myErrors.push('Please enter your email');
+    }
+    return myErrors;
+  }
+
+  function display() {
+    var info = getUserInfo();
+    console.log(info);
+    for (var i = 0; i < info.length; i++) {
+      var myNode = document.getElementById('message');
+      var myElement = document.createElement('p');
+      var myText = document.createTextNode(info[i]);
+      myElement.appendChild(myText);
+      myNode.appendChild(myElement);
+    }
+    return info;
+  }
+
+  //events
+  document.forms.myForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    display();
+  }, false);
 });
