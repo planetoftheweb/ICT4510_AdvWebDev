@@ -126,3 +126,7 @@ footer .navbar-nav>li a {
   text-decoration: underline;
   color: #EEC856 !important;
 }
+
+#myForm {
+    opacity: 0;
+}

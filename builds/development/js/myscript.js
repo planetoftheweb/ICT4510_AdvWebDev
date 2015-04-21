@@ -1,57 +1,68 @@
-/* 
+/*
   name: Ray Villalobos
   course name: ICT 4510 Advanced Web Design and Site Management
-  date: 04/13/15
+  date: 04/20/15
 */
 
 $(function() {
   'use strict';
 
+  //Animate the form element
+  $( "#myForm" ).animate({
+    opacity: 1
+    }, 1000);
+
   function getUserInfo() {
     var formInfo = {};
     var myInfoArray = [];
-    formInfo.firstname = document.getElementById('firstname').value;
-    formInfo.lastname = document.getElementById('lastname').value;
-    formInfo.email = document.getElementById('email').value;
-    formInfo.phone = document.getElementById('phone').value;
+    formInfo.firstname = $('#firstname').val();
+    formInfo.lastname = $('#lastname').val();
+    formInfo.email = $('#email').val();
+    formInfo.phone = $('#phone').val();
+
     myInfoArray = validate(formInfo);
-    console.log(myInfoArray.length);
     if (myInfoArray.length === 0) {
-      myInfoArray.push('Thank you ' + formInfo.firstname);
+        $('#firstname').val('');
+        $('#lastname').val('');
+        $('#email').val('');
+        $('#phone').val('');
+        return 'Thank you ' + formInfo.firstname;
+    } else {
+        return '';
     }
-    return myInfoArray;
   }
 
   function validate(myObject) {
     var myErrors = [];
     if (myObject.firstname.length === 0) {
-      myErrors.push('Please enter your first name');
+      $('span#error_firstname').html('Please enter your first name').css('color', 'red');
+      myErrors.push('error');
+    } else {
+      $('span#error_firstname').html('');
     }
     if (myObject.lastname.length === 0) {
-      myErrors.push('Please enter your last name');
+        $('span#error_lastname').html('Please enter your last name').css('color', 'red');
+        myErrors.push('error');
+    } else {
+      $('span#error_lastname').html('');
     }
     if (myObject.email.length === 0) {
-      myErrors.push('Please enter your email');
+        $('span#error_email').html('Please enter your email').css('color', 'red');
+        myErrors.push('error');
+    } else {
+      $('span#error_email').html('');
     }
     return myErrors;
   }
 
   function display() {
     var info = getUserInfo();
-    console.log(info);
-    for (var i = 0; i < info.length; i++) {
-      var myNode = document.getElementById('message');
-      var myElement = document.createElement('p');
-      var myText = document.createTextNode(info[i]);
-      myElement.appendChild(myText);
-      myNode.appendChild(myElement);
-    }
+      $('#message').html('<p>' + info + '</p>');
     return info;
   }
 
   //events
-  document.forms.myForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    display();
-  }, false);
+  $('#submit').click(function() {
+      display();
+  });
 });
