@@ -127,6 +127,7 @@ footer .navbar-nav>li a {
   color: #EEC856 !important;
 }
 
-#myForm {
-    opacity: 0;
+
+.error {
+  color: #DA3637;
 }
