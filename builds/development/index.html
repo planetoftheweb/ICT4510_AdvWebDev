@@ -37,10 +37,6 @@
   <div class="article container">
     <div class="row">
       <div class="col-md-offset-1 col-md-10">
-
-
-
-
         <div id="tabs">
         	<ul class="nav nav-tabs">
         		<li role="presentation" class="active" data-toggle="tab" ><a href="#formtab">Form</a></li>
@@ -49,6 +45,7 @@
         	<div id="formtab">
             <section class="requiredform">
               <h3>Fill out this form</h3>
+              <div id="message"></div>
               <form name="myForm" id="myForm" class="form-horizontal">
                 <div class="form-group">
                   <label for="firstname" class="col-sm-2 control-label">First Name (required)</label>
@@ -71,7 +68,7 @@
                 <div class="form-group">
                   <label for="phone" class="col-sm-2 control-label">Phone</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="phone" placeholder="Phone">
+                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone">
                   </div>
                 </div><!-- form-group -->
                 <div class="form-group">
