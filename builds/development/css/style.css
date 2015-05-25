@@ -127,7 +127,16 @@ footer .navbar-nav>li a {
   color: #EEC856 !important;
 }
 
-
 .error {
   color: #DA3637;
+}
+
+#map {
+  width: 100%;
+  height: 500px;
+  margin-bottom: 50px;
+}
+
+.form-group label {
+  font-size: .9em;
 }
